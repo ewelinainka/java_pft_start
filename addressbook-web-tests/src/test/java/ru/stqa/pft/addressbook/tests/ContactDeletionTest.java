@@ -1,0 +1,42 @@
+package ru.stqa.pft.addressbook.tests;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertTrue;
+
+public class ContactDeletionTest extends TestBase{
+  WebDriver wd;
+
+  @Test
+          public void testContactDeletion() {
+
+    app.getNavigationHelper().gotoHomePage();
+    app.getGroupsHelper().selectContact();
+    app.getGroupsHelper().deleteSelectedContact();
+    wd.switchTo().alert().accept();
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
