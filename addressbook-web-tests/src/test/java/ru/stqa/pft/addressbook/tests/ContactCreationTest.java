@@ -8,10 +8,10 @@ public class ContactCreationTest extends TestBase{
   @Test
   public void testContactCreation() {
 
-    app.gotoHomePage();
-    app.addNewContact();
-    app.fillContactForm(new GroupDataContact("Ewelina", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
-    app.submitContactCreation();
+    app.getNavigationHelper().gotoHomePage();
+    app.getGroupsHelper().addNewContact();
+    app.getGroupsHelper().fillContactForm(new GroupDataContact("Ewelina", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
+    app.getGroupsHelper().submitContactCreation();
     app.logout();
   }
 
