@@ -1,35 +1,73 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.GroupDataContact;
 
 import java.util.concurrent.TimeUnit;
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ContactCreationTest {
-  private WebDriver wd;
+public class ApplicationManager {
+  public WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("https://localhost/addressbook/");
+    login("admin", "secret");
   }
 
-  @Test
-  public void testContactCreation() throws Exception {
-
-    Login("admin", "secret");
-    addNewContact();
-    fillContactForm(new GroupDataContact("Ewelina", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
-    submitContactCreation();
+  public void login(String username, String password) {
+    wd.findElement(By.name("user")).clear();
+    wd.findElement(By.name("user")).sendKeys(username);
+    wd.findElement(By.id("LoginForm")).click();
+    wd.findElement(By.name("pass")).click();
+    wd.findElement(By.name("pass")).clear();
+    wd.findElement(By.name("pass")).sendKeys(password);
+    wd.findElement(By.xpath("//input[@value='Login']")).click();
+    wd.findElement(By.xpath("//html")).click();
   }
 
-  private void submitContactCreation() {
+  public void logout() {
+    wd.findElement(By.linkText("Logout")).click();
+  }
+
+  public void returnToGroupPage() {
+    wd.findElement(By.linkText("groups")).click();
+  }
+
+  public void submitGroupCreation() {
     wd.findElement(By.name("submit")).click();
   }
 
-  private void fillContactForm(GroupDataContact groupDataContact) {
+  public void fillGroupForm(GroupData groupData) {
+    wd.findElement(By.name("group_name")).click();
+    wd.findElement(By.name("group_name")).clear();
+    wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
+    wd.findElement(By.name("group_header")).click();
+    wd.findElement(By.name("group_header")).clear();
+    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+    wd.findElement(By.name("group_footer")).click();
+    wd.findElement(By.name("group_footer")).clear();
+    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+  }
+
+  public void initGroupCreation() {
+    wd.findElement(By.xpath("(//input[@name='new'])[2]")).click();
+  }
+
+  public void gotoGroupPage() {
+    wd.findElement(By.linkText("groups")).click();
+  }
+
+  public void submitContactCreation() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  public void fillContactForm(GroupDataContact groupDataContact) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(groupDataContact.getFirstname());
@@ -62,11 +100,15 @@ public class ContactCreationTest {
     wd.findElement(By.name("fax")).sendKeys(groupDataContact.getFaxno());
   }
 
-  private void addNewContact() {
+  public void gotoHomePage() {
+    wd.findElement(By.linkText("home")).click();
+  }
+
+  public void addNewContact() {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  private void Login(String username, String password) {
+  public void Login(String username, String password) {
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys(username);
@@ -75,13 +117,11 @@ public class ContactCreationTest {
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
-
   }
 
-  private boolean isElementPresent(By by) {
+  public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
       return true;
@@ -90,7 +130,7 @@ public class ContactCreationTest {
     }
   }
 
-  private boolean isAlertPresent() {
+  public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
       return true;
@@ -99,4 +139,11 @@ public class ContactCreationTest {
     }
   }
 
+  public void deleteSelectedGroup() {
+    wd.findElement(By.name("delete")).click();
+  }
+
+  public void selectGroup() {
+    wd.findElement(By.name("selected[]")).click();
+  }
 }
