@@ -12,9 +12,10 @@ public class ContactDeletionTest extends TestBase{
           public void testContactDeletion() {
 
     app.getNavigationHelper().gotoHomePage();
-    app.getGroupsHelper().selectContact();
-    app.getGroupsHelper().deleteSelectedContact();
+    app.getContactHelper().selectContact();
+    app.getContactHelper().deleteSelectedContact();
     wd.switchTo().alert().accept();
+
 
 
   }

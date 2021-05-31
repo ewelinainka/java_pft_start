@@ -10,8 +10,8 @@ public class ContactModificationTest extends TestBase {
 
   public void testContactModification() {
     app.getNavigationHelper().gotoHomePage();
-    app.getGroupsHelper().editContact();
-    app.getGroupsHelper().fillContactForm(new GroupDataContact("Ewelinaaa11", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
+    app.getContactHelper().editContact();
+    app.getContactHelper().fillContactForm(new GroupDataContact("Ewelinaaa11", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
 
     app.getGroupsHelper().submitGroupModification();
     app.getGroupsHelper().returnToGroupPage();
