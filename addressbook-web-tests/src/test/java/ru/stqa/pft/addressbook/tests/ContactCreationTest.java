@@ -11,7 +11,7 @@ public class ContactCreationTest extends TestBase{
 
     app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().addNewContact();
-    app.getContactHelper().fillContactForm(new ContactData("Ewelinaaa11", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444"));
+    app.getContactHelper().fillContactForm(new ContactData("Ewelinaaa11", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444","test 1"),true);
     app.getContactHelper().submitContactCreation(By.name("submit"));
     app.getGroupsHelper().returnToGroupPage();
     app.logout();
