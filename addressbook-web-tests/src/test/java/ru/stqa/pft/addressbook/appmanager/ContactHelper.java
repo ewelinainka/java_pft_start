@@ -51,11 +51,23 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
   }
-  public void returnToGroupPage() {
-    click(By.linkText("groups"));
+  public void returnToContactPage() {
+    click(By.linkText("home"));
   }
 
- // public void submitContactModification() {
- //   click(By.name("submit"));
- // }
+  public void createContact(ContactData contact, boolean b) {
+    addNewContact();
+    fillContactForm(contact,true);
+    submitContactCreation(By.name("submit"));
+    returnToContactPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+   public void submitContactModification() {
+     click(By.name("update"));
+   }
+
 }
