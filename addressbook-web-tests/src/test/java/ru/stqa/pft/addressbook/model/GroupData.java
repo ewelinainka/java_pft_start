@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupData {
+  private final String id;
   private final String name;
   private final String header;
   private final String footer;
@@ -11,22 +12,15 @@ public class GroupData {
     this.name = name;
     this.header = header;
     this.footer = footer;
+    this.id = null;
   }
 
-  @Override //wygenerowana przez code> Generate> Equals - potrzebne zeby porownywalo/rozpoznawalo jako takie same elementy w liscie
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return Objects.equals(name, groupData.name);
-  }
-
-  @Override //wygenerowana przez code> Generate> Equals - potrzebne zeby porownywalo/rozpoznawalo jako takie same elementy w liscie
-  public int hashCode() {
-    return Objects.hash(name);
+  public String getId() {//wygenerewane code>Getter po stworzeniu nowej zmiennej id i konstruktora
+    return id;
   }
 
   public String getName() {
+
     return name;
   }
 
@@ -38,10 +32,24 @@ public class GroupData {
     return footer;
   }
 
-  @Override//wygenerowana przez code> Generate> toString
+  @Override //wygenerewane code> equals
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return Objects.equals(id, groupData.id) && Objects.equals(name, groupData.name);
+  }
+
+  @Override //wygenerewane code> equals
+  public int hashCode() {
+    return Objects.hash(id, name);
+  }
+
+  @Override //wygenerewane code> toString
   public String toString() {
     return "GroupData{" +
-            "name='" + name + '\'' +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
             '}';
   }
 }
