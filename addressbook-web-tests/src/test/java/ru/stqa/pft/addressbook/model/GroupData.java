@@ -7,20 +7,12 @@ public class GroupData {
     this.id = id;
   }
 
-  private int id;
-  private final String name;
-  private final String header;
-  private final String footer;
-
-  public GroupData(String name, String header, String footer) {
-    this.name = name;
-    this.header = header;
-    this.footer = footer;
-    this.id = 0;
-  }
-
-  public int getId() {//wygenerewane code>Getter po stworzeniu nowej zmiennej id i konstruktora
-    return id;
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
   }
 
   @Override
@@ -36,6 +28,22 @@ public class GroupData {
     return Objects.hash(id, name);
   }
 
+  private int id;
+  private final String name;
+  private final String header;
+  private final String footer;
+
+  public GroupData(String name, String header, String footer) {
+    this.name = name;
+    this.header = header;
+    this.footer = footer;
+    this.id = Integer.MAX_VALUE;
+  }
+
+  public int getId() {//wygenerewane code>Getter po stworzeniu nowej zmiennej id i konstruktora
+    return id;
+  }
+
   public String getName() {
 
     return name;
@@ -49,11 +57,4 @@ public class GroupData {
     return footer;
   }
 
-  @Override //wygenerewane code> toString
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            '}';
-  }
 }
