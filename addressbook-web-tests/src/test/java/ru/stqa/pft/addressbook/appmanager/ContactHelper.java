@@ -51,11 +51,4 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
   }
-  public void returnToGroupPage() {
-    click(By.linkText("groups"));
-  }
-
- // public void submitContactModification() {
- //   click(By.name("submit"));
- // }
 }
