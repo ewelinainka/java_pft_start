@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.model;
 
-import java.util.Objects;
-
 public class GroupData {
   private final String name;
   private final String header;
@@ -11,19 +9,6 @@ public class GroupData {
     this.name = name;
     this.header = header;
     this.footer = footer;
-  }
-
-  @Override //wygenerowana przez code> Generate> Equals - potrzebne zeby porownywalo/rozpoznawalo jako takie same elementy w liscie
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return Objects.equals(name, groupData.name);
-  }
-
-  @Override //wygenerowana przez code> Generate> Equals - potrzebne zeby porownywalo/rozpoznawalo jako takie same elementy w liscie
-  public int hashCode() {
-    return Objects.hash(name);
   }
 
   public String getName() {
@@ -36,12 +21,5 @@ public class GroupData {
 
   public String getFooter() {
     return footer;
-  }
-
-  @Override//wygenerowana przez code> Generate> toString
-  public String toString() {
-    return "GroupData{" +
-            "name='" + name + '\'' +
-            '}';
   }
 }
