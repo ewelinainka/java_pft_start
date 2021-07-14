@@ -16,7 +16,7 @@ public class NavigationHelper extends HelperBase{
 
     if (isElementPresent(By.tagName("h1"))
             && groups.equals(wd.findElement(By.tagName("h1")).getText())
-            //wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            // && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))){
       return;
     }
