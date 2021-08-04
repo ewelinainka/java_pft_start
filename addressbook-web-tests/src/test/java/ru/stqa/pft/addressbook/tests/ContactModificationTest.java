@@ -18,7 +18,7 @@ public class ContactModificationTest extends TestBase {
       app.getContactHelper().createContact(new ContactData("Ewelinaaa11", "Inka", null, null, null, null, "123-345-567", "222-222-222", "333-333-333", "444-444-444","test q"),true);
     }
 
-    app.getContactHelper().editContact();
+    app.getContactHelper().editContact(1);
     app.getContactHelper().fillContactForm(new ContactData("Ewelinaaa1zz1", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444","test q"),false);
 
     app.getContactHelper().submitContactModification();
