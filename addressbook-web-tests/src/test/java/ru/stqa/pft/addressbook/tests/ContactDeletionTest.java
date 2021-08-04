@@ -11,12 +11,11 @@ public class ContactDeletionTest extends TestBase{
 
     app.getNavigationHelper().gotoHomePage();
 
-    int before = app.getContactHelper().getContactCount();
-
-    if(!app.getContactHelper().isThereAGroup()){
+       if(!app.getContactHelper().isThereAGroup()){
       app.getContactHelper().createContact(new ContactData("Ewelinaaa11", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444","test q"),true);
     }
 
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().deleteSelectedContact();
     app.getContactHelper().returnToContactPage();
