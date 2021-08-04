@@ -83,14 +83,14 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
- /* public List<ContactData> getContactList() {
+public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
     for(WebElement element : elements){
       String name = element.getText();
-      ContactData contact = new ContactData(name, null, null);
+      ContactData contact = new ContactData(name, null, null,null,null, null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
-  }*/
+  }
 }
