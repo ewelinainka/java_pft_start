@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +44,7 @@ public class ContactHelper extends HelperBase{
   public void selectContact(int index)
   {
     wd.findElements(By.name("selected[]")).get(index).click();
+
    // click(By.name("selected[]"));
   }
 
@@ -85,12 +83,32 @@ public class ContactHelper extends HelperBase{
 
 public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
-    for(WebElement element : elements){
-      String name = element.getText();
-      ContactData contact = new ContactData(name, null, null,null,null, null, null, null, null, null, null);
+  List<WebElement> rows = wd.findElements(By.name("entry"));
+  for(WebElement element : rows){
+    List<WebElement> cells = element.findElements(By.tagName("td"));
+    String firstname = cells.get(1).getText();
+    String lastname = cells.get(2).getText();
+    int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(id, lastname, firstname,null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
+  }
+
+  public void createContact(ContactData contact) {
+    addNewContact();
+    fillContactForm(contact,true);
+    submitContactCreation(By.name("submit"));
+    returnToContactPage();
+  }
+
+  public void initContractModification(int index) {
+
+    click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

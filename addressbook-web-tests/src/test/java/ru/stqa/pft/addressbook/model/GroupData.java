@@ -30,7 +30,6 @@ public class GroupData {
     this.footer = footer;
   }
 
-
   @Override
   public String toString() {
     return "GroupData{" +
