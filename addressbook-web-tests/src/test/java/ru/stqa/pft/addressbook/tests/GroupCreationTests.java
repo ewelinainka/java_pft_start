@@ -1,5 +1,4 @@
 package ru.stqa.pft.addressbook.tests;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -14,7 +13,7 @@ public class GroupCreationTests extends TestBase{
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupsHelper().getGroupList();
    // int before = app.getGroupsHelper().getGroupCount();
-    app.getGroupsHelper().createGroup(new GroupData("test q", null, null));
+    app.getGroupsHelper().createGroup(new GroupData( "test q", null, null));
     List<GroupData> after =app.getGroupsHelper().getGroupList();
    // int after = app.getGroupsHelper().getGroupCount();
     Assert.assertEquals(after.size(), before.size() +1);
