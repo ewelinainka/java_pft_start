@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -10,10 +9,10 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase{
 
-  @Test
+  @Test(enabled = false)
   public void testContactCreation() {
 
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     List<ContactData> before = app.getContactHelper().getContactList();
 

@@ -32,21 +32,19 @@ public class ContactModificationTest extends TestBase {
 
  */
 package ru.stqa.pft.addressbook.tests;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
 
   public void testContactModification() {
 
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     if(! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Ewelinaaa1zz1", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444","test q"),true);
@@ -58,7 +56,7 @@ public class ContactModificationTest extends TestBase {
     ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "Ewelinaaa1zz1", "Inka", "Test address 11", "a@gmail.com", "b@gmail.com", "c@gmail.com", "123-345-567", "222-222-222", "333-333-333", "444-444-444","test q");
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
